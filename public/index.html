@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 2.1 - Code Coverage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Code Coverage</h1>
+    </header>
+
+    <div class="container">
+        <section class="search-section">
+            <h2>🎮 Buscar Pokémon</h2>
+            <form id="pokemonForm">
+                <input type="text" id="pokemonInput" placeholder="Nombre del Pokémon..." autocomplete="off">
+                <button type="submit">Buscar</button>
+            </form>
+        </section>
+
+        <section class="table-container">
+            <h2>Pokémon</h2>
+            <table id="pokemonTable">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Peso</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <section class="search-section">
+            <h2>🎵 Buscar Canción</h2>
+            <form id="musicForm">
+                <input type="text" id="musicInput" placeholder="Nombre de la canción o artista..." autocomplete="off">
+                <button type="submit">Buscar</button>
+            </form>
+        </section>
+
+        <section class="table-container">
+            <h2>Canciones</h2>
+            <table id="musicTable">
+                <thead>
+                    <tr>
+                        <th>Portada</th>
+                        <th>Canción</th>
+                        <th>Artista</th>
+                        <th>Álbum</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <section class="search-section">
+            <h2>🌍 Buscar País</h2>
+            <form id="countryForm">
+                <input type="text" id="countryInput" placeholder="Nombre del país..." autocomplete="off">
+                <button type="submit">Buscar</button>
+            </form>
+        </section>
+
+        <section class="table-container">
+            <h2>País</h2>
+            <table id="countryTable">
+                <thead>
+                    <tr>
+                        <th>Bandera</th>
+                        <th>Nombre</th>
+                        <th>Capital</th>
+                        <th>Región</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Importar las funciones desde utils.js -->
+    <script type="module">
+        import { obtenerPokemon, obtenerMusica, obtenerPais, limpiarTabla, agregarFila } from './utils.js';
+
+        document.getElementById("pokemonForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            let query = document.getElementById("pokemonInput").value.trim().toLowerCase();
+            obtenerPokemon(query).then(pokemon => {
+                limpiarTabla("pokemonTable");
+                if (pokemon) {
+                    let tipos = pokemon.types.map(type => type.type.name).join(", ");
+                    let peso = (pokemon.weight / 10) + " kg";
+                    agregarFila("pokemonTable", pokemon.sprites.front_default, pokemon.name.toUpperCase(), tipos, peso);
+                }
+            }).catch(error => console.error('Error en búsqueda de Pokémon:', error));
+        });
+
+        document.getElementById("musicForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            let query = document.getElementById("musicInput").value.trim();
+            obtenerMusica(query).then(music => {
+                limpiarTabla("musicTable");
+                if (music.results) {
+                    music.results.forEach(cancion => {
+                        agregarFila("musicTable", cancion.artworkUrl100, cancion.trackName, cancion.artistName, cancion.collectionName);
+                    });
+                }
+            }).catch(error => console.error('Error en búsqueda de música:', error));
+        });
+
+        document.getElementById("countryForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            let query = document.getElementById("countryInput").value.trim();
+            obtenerPais(query).then(countries => {
+                limpiarTabla("countryTable");
+                if (countries.length > 0) {
+                    countries.forEach(pais => {
+                        agregarFila("countryTable", pais.flags.png, pais.name.common, pais.capital ? pais.capital[0] : "N/A", pais.region);
+                    });
+                }
+            }).catch(error => console.error('Error en búsqueda de países:', error));
+        });
+    </script>
+
+</body>
+
+</html>

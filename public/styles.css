@@ -1,0 +1,171 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 15px;
+    color: #1da1f2;
+    text-align: center;
+    background: white;
+    width: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.container {
+    width: 92%;
+    max-width: 900px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.search-section {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 60%;
+    font-size: 14px;
+}
+
+#pokemonForm button {
+    background-color: #e74c3c;
+}
+
+#pokemonForm button:hover {
+    background-color: #c0392b;
+}
+
+#musicForm button {
+    background-color: #3498db;
+}
+
+#musicForm button:hover {
+    background-color: #2980b9;
+}
+
+#countryForm button {
+    background-color: #2ecc71;
+}
+
+#countryForm button:hover {
+    background-color: #27ae60;
+}
+
+button {
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background 0.3s;
+}
+
+#pokemonTableContainer {
+    border-top: 5px solid #e74c3c;
+}
+
+#musicTableContainer {
+    border-top: 5px solid #3498db;
+}
+
+#countryTableContainer {
+    border-top: 5px solid #2ecc71;
+}
+
+.table-container {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px 0px 15px 5px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+table {
+    width: 98%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+}
+
+#pokemonTable th {
+    background-color: #e74c3c;
+}
+
+#musicTable th {
+    background-color: #3498db;
+}
+
+#countryTable th {
+    background-color: #2ecc71;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: 14px;
+}
+
+.img-table {
+    width: 80px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 600px) {
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .img-table {
+        width: 60px;
+    }
+}

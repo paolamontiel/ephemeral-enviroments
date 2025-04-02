@@ -1,11 +1,15 @@
 const express = require('express');
+const path = require('path');
+
 const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.send('¡Hola, esta es mi app en Heroku!');
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
